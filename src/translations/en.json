@@ -24,7 +24,8 @@
         "remove_video": "Remove this video from the playlist",
         "delete_self": "Delete",
         "rename_self": "Rename",
-        "new_name_msg": "What do you want the new name to be?"
+        "new_name_msg": "What do you want the new name to be?",
+        "watched_history_playlist_name": "Watched History"
     },
     "misc": {
         "searchBarLabel": "What are you looking for?",

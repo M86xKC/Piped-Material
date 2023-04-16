@@ -16,6 +16,7 @@ Vue.config.productionTip = false
 Promise.all([
 	store.dispatch('prefs/loadState'),
 	store.dispatch('auth/initializeAuth'),
+	store.dispatch('plHistory/resolvePlaylistID'),
 	i18nInitialized
 ]).then(() => {
 	new Vue({

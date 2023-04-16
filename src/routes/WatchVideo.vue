@@ -383,14 +383,14 @@ export default {
 					.replaceAll('\n', '<br>')
 			)
 			try {
-				if (!this.$store.getters['prefs/getPreference']('disableDuplicateHistoryEntries', false)) {
-					this.dbID = await addWatchedVideo(video)
+				if (!this.$store.getters['prefs/getPreference']('disableDuplicateHistoryEntries', false) && false) {
+					this.dbID = await addWatchedVideo(this.$store, video)
 					this.lastWatch = await findLastWatch(this.videoId)
 				} else {
 					let dbObj = await findLastWatch(this.videoId)
 
 					if (dbObj == null) {
-						this.dbID = await addWatchedVideo(video)
+						this.dbID = await addWatchedVideo(this.$store, video)
 						dbObj = await findLastWatch(this.videoId)
 					} else {
 						this.dbID = dbObj.id
@@ -415,7 +415,7 @@ export default {
 			if (this.dbID == null || !this.$refs.player) {
 				return
 			}
-			return updateWatchedVideoProgress(this.dbID, this.$refs.player.getCurrentTime(), this.video.duration)
+			return updateWatchedVideoProgress(this.$store, this.dbID, this.$refs.player.getCurrentTime(), this.video.duration)
 		}, 500)
 	},
 	computed: {

@@ -6,7 +6,8 @@ PMDB.version(3).stores({
 	watchedVideos: '++id,videoId,progressPcnt,timestamp'
 })
 
-export async function addWatchedVideo (videoObj) {
+export async function addWatchedVideo (store, videoObj) {
+	await store.dispatch('plHistory/addVideo', videoObj.videoId)
 	return PMDB.watchedVideos.add({
 		videoId: videoObj.videoId,
 		video: videoObj,
@@ -16,7 +17,7 @@ export async function addWatchedVideo (videoObj) {
 	})
 }
 
-export function updateWatchedVideoProgress (videoID, prog, dur) {
+export function updateWatchedVideoProgress (_, videoID, prog, dur) {
 	return PMDB.watchedVideos.update(videoID, {
 		progress: prog,
 		progressPcnt: Math.min((prog / dur) * 100, 100)
