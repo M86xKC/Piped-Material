@@ -12,12 +12,17 @@ export const WatchedVideosPlaylist = {
 	},
 	actions: {
 		async resolvePlaylistID ({ dispatch, commit }) {
-			const playlists = await dispatch('auth/makeRequest', {
-				method: 'GET',
-				path: '/user/playlists'
-			}, {
-				root: true
-			})
+			let playlists
+			try {
+				playlists = await dispatch('auth/makeRequest', {
+					method: 'GET',
+					path: '/user/playlists'
+				}, {
+					root: true
+				})
+			} catch (e) {
+				return
+			}
 			let found = false; let pl
 			for (const _pl of playlists) {
 				const sdp = _pl.shortDescription ?? ''
@@ -45,6 +50,9 @@ export const WatchedVideosPlaylist = {
 			commit('replaceID', pl.id)
 		},
 		async addVideo ({ state, dispatch }, videoID) {
+			if (state.playlistID === '') {
+				return
+			}
 			await dispatch('auth/makeRequest', {
 				method: 'POST',
 				path: '/user/playlists/add',

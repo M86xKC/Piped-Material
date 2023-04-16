@@ -383,7 +383,8 @@ export default {
 					.replaceAll('\n', '<br>')
 			)
 			try {
-				if (!this.$store.getters['prefs/getPreference']('disableDuplicateHistoryEntries', false) && false) {
+				// eslint-disable-next-line no-constant-condition
+				if (!this.$store.getters['prefs/getPreference']('disableDuplicateHistoryEntries', false) || true) {
 					this.dbID = await addWatchedVideo(this.$store, video)
 					this.lastWatch = await findLastWatch(this.videoId)
 				} else {
