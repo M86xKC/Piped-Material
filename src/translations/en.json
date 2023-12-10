@@ -170,6 +170,11 @@
             "av01": "AV1 (AOMedia Video 1)",
             "avc1": "AVC (H.264/Advanced Video Coding)",
             "vp9": "VP9"
+        },
+        "custom_instance": {
+            "button_label": "Enable Editing Instance URL?",
+            "disabled_alert": "You should likely select an existing instance from the list right now otherwise it’ll continue to use the previously edited instance URL.",
+            "input_label": "Instance Base URL"
         }
     },
     "footer": {
